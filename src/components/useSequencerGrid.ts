@@ -14,5 +14,7 @@ export const useSequencerGrid = (steps: number, notes: number) => {
     )
   }
 
-  return { activeGrid, toggleCell }
+  const loadGrid = (grid: boolean[][]) => setActiveGrid(grid)
+
+  return { activeGrid, toggleCell, loadGrid }
 }

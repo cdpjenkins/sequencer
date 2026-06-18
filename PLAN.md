@@ -41,7 +41,7 @@ Build a browser-based step sequencer with a clickable grid, note playback via We
 **Done when**: Test clicks cells and asserts active state changes correctly.
 
 ### Step 4: Play/Stop button with playhead
-
+can 
 **Test**: Button renders as "Play"; clicking it changes label to "Stop" and starts advancing the playhead column; clicking "Stop" resets the playhead to 0.
 **Implementation**: `Transport` component with `isPlaying` and `playhead` state; `useEffect` drives a `setInterval` at 120 BPM (one step = 125 ms at 8th-note resolution) when playing.
 **Done when**: Test asserts button label toggle and playhead state changes.

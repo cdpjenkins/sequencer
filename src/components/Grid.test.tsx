@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { act, render, renderHook, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Grid } from './Grid'
 import { useSequencerGrid } from './useSequencerGrid'
@@ -45,6 +45,37 @@ it('deactivates an active cell when clicked again', async () => {
   expect(firstCell).toHaveClass('active')
   await user.click(firstCell)
   expect(firstCell).not.toHaveClass('active')
+})
+
+it('loadGrid replaces the entire grid state', () => {
+  const { result } = renderHook(() => useSequencerGrid(4, 2))
+  const newGrid = [
+    [true, false],
+    [false, true],
+    [true, true],
+    [false, false],
+  ]
+  act(() => result.current.loadGrid(newGrid))
+  expect(result.current.activeGrid).toEqual(newGrid)
+})
+
+it('loadGrid makes loaded active cells visible in the rendered grid', async () => {
+  const user = userEvent.setup()
+  const LoadableGrid = () => {
+    const { activeGrid, toggleCell, loadGrid } = useSequencerGrid(2, 2)
+    return (
+      <>
+        <button onClick={() => loadGrid([[false, true], [false, false]])}>Load</button>
+        <Grid steps={2} notes={2} activeGrid={activeGrid} onToggle={toggleCell} />
+      </>
+    )
+  }
+  render(<LoadableGrid />)
+  const cells = screen.getAllByRole('button').filter(b => b.textContent === '')
+  expect(cells[0]).not.toHaveClass('active')
+  await user.click(screen.getByRole('button', { name: 'Load' }))
+  expect(cells[0]).toHaveClass('active')
+  expect(cells[1]).not.toHaveClass('active')
 })
 
 it('toggling one cell does not affect other cells', async () => {

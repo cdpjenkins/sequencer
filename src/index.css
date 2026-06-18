@@ -66,6 +66,22 @@ body {
   opacity: 0.85;
 }
 
+.toolbar-btn {
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  font-family: var(--sans);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.toolbar-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* Sequencer grid */
 .sequencer-wrapper {
   overflow-x: auto;
