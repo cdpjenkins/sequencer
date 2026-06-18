@@ -13,8 +13,14 @@ function App() {
 
   return (
     <>
-      <button onClick={isPlaying ? stop : play}>{isPlaying ? 'Stop' : 'Play'}</button>
-      <Grid steps={STEPS} notes={NOTES} activeGrid={activeGrid} onToggle={toggleCell} playhead={playhead} />
+      <div className="toolbar">
+        <button className="play-btn" onClick={isPlaying ? stop : play}>
+          {isPlaying ? 'Stop' : 'Play'}
+        </button>
+      </div>
+      <div className="sequencer-wrapper">
+        <Grid steps={STEPS} notes={NOTES} activeGrid={activeGrid} onToggle={toggleCell} playhead={playhead} />
+      </div>
     </>
   )
 }
