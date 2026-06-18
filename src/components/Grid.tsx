@@ -12,9 +12,10 @@ type Props = {
   notes: number
   activeGrid: boolean[][]
   onToggle: (step: number, note: number) => void
+  playhead?: number
 }
 
-export const Grid = ({ steps, notes, activeGrid, onToggle }: Props) => {
+export const Grid = ({ steps, notes, activeGrid, onToggle, playhead }: Props) => {
   const noteIndices = Array.from({ length: notes }, (_, i) => notes - 1 - i)
   const stepIndices = Array.from({ length: steps }, (_, i) => i)
 
@@ -26,7 +27,11 @@ export const Grid = ({ steps, notes, activeGrid, onToggle }: Props) => {
           {stepIndices.map(stepIndex => (
             <button
               key={stepIndex}
-              className={`sequencer-cell${activeGrid[stepIndex]?.[noteIndex] ? ' active' : ''}`}
+              className={[
+                'sequencer-cell',
+                activeGrid[stepIndex]?.[noteIndex] ? 'active' : '',
+                stepIndex === playhead ? 'playhead' : '',
+              ].filter(Boolean).join(' ')}
               onClick={() => onToggle(stepIndex, noteIndex)}
             />
           ))}

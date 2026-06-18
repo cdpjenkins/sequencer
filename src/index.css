@@ -139,3 +139,12 @@ code {
   background: var(--accent);
   border-color: var(--accent);
 }
+
+.sequencer-cell.playhead {
+  border-color: #888;
+  background: color-mix(in srgb, var(--code-bg) 60%, var(--accent) 40%);
+}
+
+.sequencer-cell.active.playhead {
+  background: color-mix(in srgb, var(--accent) 70%, #fff 30%);
+}
