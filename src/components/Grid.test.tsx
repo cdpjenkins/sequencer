@@ -47,6 +47,12 @@ it('deactivates an active cell when clicked again', async () => {
   expect(firstCell).not.toHaveClass('active')
 })
 
+it('initialises with the provided initial grid', () => {
+  const initialGrid = [[false, true], [false, false]]
+  const { result } = renderHook(() => useSequencerGrid(2, 2, initialGrid))
+  expect(result.current.activeGrid).toEqual(initialGrid)
+})
+
 it('loadGrid replaces the entire grid state', () => {
   const { result } = renderHook(() => useSequencerGrid(4, 2))
   const newGrid = [

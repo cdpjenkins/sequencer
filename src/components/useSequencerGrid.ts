@@ -3,8 +3,8 @@ import { useState } from 'react'
 const emptyGrid = (steps: number, notes: number): boolean[][] =>
   Array.from({ length: steps }, () => Array.from({ length: notes }, () => false))
 
-export const useSequencerGrid = (steps: number, notes: number) => {
-  const [activeGrid, setActiveGrid] = useState<boolean[][]>(() => emptyGrid(steps, notes))
+export const useSequencerGrid = (steps: number, notes: number, initialGrid?: boolean[][]) => {
+  const [activeGrid, setActiveGrid] = useState<boolean[][]>(() => initialGrid ?? emptyGrid(steps, notes))
 
   const toggleCell = (step: number, note: number) => {
     setActiveGrid(prev =>

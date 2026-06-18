@@ -3,12 +3,13 @@ import { Grid } from './components/Grid'
 import { useAudioEngine } from './components/useAudioEngine'
 import { useSequencerGrid } from './components/useSequencerGrid'
 import { useTransport } from './components/useTransport'
+import defaultGrid from '../sdeq.json'
 
 const STEPS = 64
 const NOTES = 36
 
 function App() {
-  const { activeGrid, toggleCell, loadGrid } = useSequencerGrid(STEPS, NOTES)
+  const { activeGrid, toggleCell, loadGrid } = useSequencerGrid(STEPS, NOTES, defaultGrid as boolean[][])
   const { isPlaying, playhead, play, stop } = useTransport(STEPS)
   const fileInputRef = useRef<HTMLInputElement>(null)
   useAudioEngine(activeGrid, playhead, isPlaying)
