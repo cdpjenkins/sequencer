@@ -20,7 +20,7 @@ export const Grid = ({ steps, notes }: Props) => {
     <div>
       {noteIndices.map(noteIndex => (
         <div key={noteIndex} style={{ display: 'flex' }}>
-          <span>{noteLabel(noteIndex)}</span>
+          <span style={{ width: '3rem', flexShrink: 0, textAlign: 'right', paddingRight: '0.4rem' }}>{noteLabel(noteIndex)}</span>
           {stepIndices.map(stepIndex => (
             <button key={stepIndex} />
           ))}
