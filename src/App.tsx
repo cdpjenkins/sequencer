@@ -1,4 +1,5 @@
 import { Grid } from './components/Grid'
+import { useAudioEngine } from './components/useAudioEngine'
 import { useSequencerGrid } from './components/useSequencerGrid'
 import { useTransport } from './components/useTransport'
 
@@ -8,6 +9,7 @@ const NOTES = 36
 function App() {
   const { activeGrid, toggleCell } = useSequencerGrid(STEPS, NOTES)
   const { isPlaying, playhead, play, stop } = useTransport(STEPS)
+  useAudioEngine(activeGrid, playhead, isPlaying)
 
   return (
     <>
